@@ -101,6 +101,6 @@ jobs:
       run: |
         git add portablizeU_release.zip
         git commit -m "Update portablizeU_release.zip"
-        git push https://${{ secrets.GITHUB_ACTOR }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        git push https://${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}.git
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
