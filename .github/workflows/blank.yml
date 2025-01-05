@@ -3,6 +3,7 @@ name: Bi-weekly Script
 on:
   schedule:
   - cron: '0 0 * * 0/14' # Runs every two weeks on Sunday at midnight
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   run-script:
