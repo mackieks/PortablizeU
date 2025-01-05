@@ -23,6 +23,9 @@ jobs:
     - name: grab softmod files
       run: |
         #!/bin/bash
+
+        cd $GITHUB_WORKSPACE
+        
         rm -rf sd
         rm -rf usb
         rm -rf portablizeU_release
@@ -91,7 +94,7 @@ jobs:
         cd ../..
         
         zip -r portablizeU_release.zip portablizeU_release
-        mv -f portablizeU_release.zip $GITHUB_WORKSPACE
+        rm -rf portablizeU_release
 
     - name: Commit and push output.zip
       run: |
