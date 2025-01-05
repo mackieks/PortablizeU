@@ -1,0 +1,89 @@
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #177DD1, 0 0 30px #4B92CF, 0 0 40px #177DD1, 0 0 50px #4B92CF, 0 0 60px #177DD1, 0 0 70px #4B92CF;
+  }
+  to {
+    text-shadow: 0 0 20px #177DD1, 0 0 30px #177DD1, 0 0 40px #177DD1, 0 0 50px #177DD1, 0 0 60px #177DD1, 0 0 70px #177DD1, 0 0 80px #177DD1;
+  }
+}
+
+/* CSS */
+.button-41 {
+  padding: 12px 26px;
+  border: 0;
+  font-size: 36px;
+  
+  transition: all 150ms ease-in-out;
+  
+  border-radius: 14px;
+  font-weight: 400;
+
+  color: #89B5EF;
+  background-color: transparent;
+  background-image: radial-gradient(50% 115% at 50% -5%, rgba(255, 255, 255, 0.11) 0%, transparent 100%);
+  box-shadow: inset 0 0px 10px 0px rgba(255, 255, 255, 0.14), inset 0px 5px 10px 0px rgba(255, 255, 255, 0.11), inset 0px 2px 5px 0px rgba(255, 255, 255, 0.4), inset 0px 3px 20px 0px rgba(0, 0, 0, 0.25);
+  
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.button-41:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.button-41:active {
+  transform: scale(.95);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 40px;
+  /* must be same height as the footer */
+}
+
+#footer {
+  justify-content: center;
+  align-items: center;
+  margin-top: -40px;
+  /* negative value of footer height */
+  height: 40px;
+  clear: both;
+  color: rgb(150,150,150);
+  background-color: rgb(13,13,13);
+}
+
+
+/* Opera Fix thanks to Maleika (Kohoutec) */
+
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+  /* thank you Erik J - negate effect of float*/
+}
