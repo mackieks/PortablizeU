@@ -1,0 +1,101 @@
+name: Bi-weekly Script
+
+on:
+  schedule:
+  - cron: '0 0 * * 0/14' # Runs every two weeks on Sunday at midnight
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Set up Git user
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: grab softmod files
+      run: |
+        #!/bin/bash
+        rm -rf sd
+        rm -rf usb
+        rm -rf portablizeU_release
+        rm *.zip
+        
+        mkdir portablizeU_release
+        cd portablizeU_release
+        
+        mkdir sd
+        cd sd
+        
+        latest_release=$(curl -s https://api.github.com/repos/wiiu-env/fw_img_payload/releases/latest)
+        download_url=$(echo $latest_release | grep -oP '"browser_download_url": "\K(.*?)(?=")' | grep ".zip")
+        curl -L -o fw_img_payload.zip $download_url
+        unzip fw_img_payload.zip
+        rm *.zip
+        
+        wget https://github.com/jan-hofmeier/minute_minute/releases/latest/download/fw_encrypted.img -O fw.img
+        wget https://github.com/isfshax/isfshax_installer/releases/latest/download/ios.img
+        wget https://github.com/isfshax/isfshax/releases/latest/download/superblock.img
+        wget https://github.com/isfshax/isfshax/releases/latest/download/superblock.img.sha
+        
+        cd wiiu
+        mkdir ios_plugins
+        cd ios_plugins
+        
+        wget https://github.com/jan-hofmeier/stroopwafel/releases/latest/download/wafel_core.ipx
+        wget https://github.com/isfshax/wafel_isfshax_patch/releases/latest/download/wafel_isfshax_patch.ipx
+        wget https://github.com/StroopwafelCFW/wafel_setup_mlc/releases/latest/download/wafel_setup_mlc.ipx
+        wget https://github.com/StroopwafelCFW/wafel_unlimit_mlc/releases/latest/download/wafel_unlimit_mlc.ipx
+        wget https://github.com/StroopwafelCFW/wafel_payloader/releases/latest/download/wafel_payloader.ipx
+        wget https://github.com/Lazr1026/wafel_usb-as-sd/releases/latest/download/wafel_usbassd.ipx
+        
+        cd ../../..
+        
+        mkdir usb
+        cd usb
+        
+        wget https://aroma.foryour.cafe/api/download/base -O base.zip
+        unzip base.zip
+        rm base.zip
+        
+        wget https://aroma.foryour.cafe/api/download?packages=environmentloader,wiiu-nanddumper-payload,fw_img_loader -O payloads.zip
+        unzip payloads.zip
+        rm payloads.zip
+        
+        wget https://aroma.foryour.cafe/api/download?packages=bloopair,inkay,swipswapme,usbseriallogger -O modules.zip
+        unzip modules.zip
+        rm modules.zip
+        
+        mkdir wiiu/apps/haxcopy
+        
+        wget https://github.com/mackieks/haxcopy/releases/latest/download/haxcopy.wuhb -O wiiu/apps/haxcopy/haxcopy.wuhb
+        
+        mkdir hax
+        mkdir hax/ios_plugins
+        
+        wget https://github.com/jan-hofmeier/minute_minute/releases/latest/download/fw_fastboot.img -O hax/fw.img
+        
+        cp ../sd/wiiu/ios_plugins/wafel_core.ipx hax/ios_plugins/0core.ipx
+        cp ../sd/wiiu/ios_plugins/wafel_isfshax_patch.ipx hax/ios_plugins/6isfshax.ipx
+        cp ../sd/wiiu/ios_plugins/wafel_unlimit_mlc.ipx hax/ios_plugins/7unlimit.ipx
+        cp ../sd/wiiu/ios_plugins/wafel_usbassd.ipx hax/ios_plugins/8usbsd.ipx
+        cp ../sd/wiiu/ios_plugins/wafel_payloader.ipx hax/ios_plugins/9payldr.ipx
+        
+        cd ../..
+        
+        zip -r portablizeU_release.zip portablizeU_release
+        mv portablizeU_release.zip $GITHUB_WORKSPACE
+
+    - name: Commit and push output.zip
+      run: |
+        git add portablizeU_release.zip
+        git commit -m "Update portablizeU_release.zip"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
