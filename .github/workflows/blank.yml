@@ -91,7 +91,7 @@ jobs:
         cd ../..
         
         zip -r portablizeU_release.zip portablizeU_release
-        mv portablizeU_release.zip $GITHUB_WORKSPACE
+        mv -f portablizeU_release.zip $GITHUB_WORKSPACE
 
     - name: Commit and push output.zip
       run: |
