@@ -2,14 +2,16 @@ body {
     background-color: rgb(13, 13, 13);
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    flex: 1;
     flex-direction: column;
 }
 
@@ -30,6 +32,7 @@ img {
     background-image: radial-gradient(50% 115% at 50% -5%, rgba(255, 255, 255, 0.11) 0%, transparent 100%);
     box-shadow: inset 0 0px 10px 0px rgba(255, 255, 255, 0.14), inset 0px 5px 10px 0px rgba(255, 255, 255, 0.11), inset 0px 2px 5px 0px rgba(255, 255, 255, 0.4), inset 0px 3px 20px 0px rgba(0, 0, 0, 0.25);
     animation: glow 1s ease-in-out infinite alternate;
+    margin-bottom: 20px; /* Add some space between the button and the footer */
 }
 
 .button-41:hover {
@@ -62,16 +65,14 @@ img {
     }
 }
 
-html, body {
-    height: 100%;
-}
-
 #footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: auto;
-    height: 500px;
+    position: fixed;
+    bottom: 10%;
+    width: 100%;
+    height: 100px; /* Adjust the height as needed */
     color: rgb(150, 150, 150);
     background-color: rgb(13, 13, 13);
 }
