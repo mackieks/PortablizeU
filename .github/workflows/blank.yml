@@ -26,7 +26,7 @@ jobs:
         rm -rf sd
         rm -rf usb
         rm -rf portablizeU_release
-        rm *.zip
+        rm -rf *.zip
         
         mkdir portablizeU_release
         cd portablizeU_release
