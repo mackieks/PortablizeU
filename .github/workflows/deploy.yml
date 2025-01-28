@@ -38,13 +38,11 @@ jobs:
         mkdir sd
         cd sd
         
-        latest_release=$(curl -s https://api.github.com/repos/wiiu-env/fw_img_payload/releases/latest)
-        download_url=$(echo $latest_release | grep -oP '"browser_download_url": "\K(.*?)(?=")' | grep ".zip")
-        curl -L -o fw_img_payload.zip $download_url
+        wget https://github.com/wiiu-env/fw_img_payload/releases/download/fw_img_payload-20250126-150853/fw_img_payload_20250126-150853.zip -O fw_img_payload.zip 
         unzip fw_img_payload.zip
         rm *.zip
         
-        wget https://github.com/StroopwafelCFW/minute_minute/releases/download/v1.0/fw.img
+        wget https://github.com/StroopwafelCFW/minute_minute/releases/latest/download/fw.img
         wget https://github.com/isfshax/isfshax_installer/releases/latest/download/ios.img
         wget https://github.com/isfshax/isfshax/releases/latest/download/superblock.img
         wget https://github.com/isfshax/isfshax/releases/latest/download/superblock.img.sha
@@ -84,9 +82,9 @@ jobs:
         mkdir hax
         mkdir hax/ios_plugins
         
-        wget https://github.com/StroopwafelCFW/minute_minute/releases/download/v1.0/fw_fastboot.img -O hax/fw.img
+        wget https://github.com/StroopwafelCFW/minute_minute/releases/latest/download/fw_fastboot.img -O hax/fw.img
         
-        cp ../sd/wiiu/ios_plugins/00core.ipx hax/ios_plugins/0core.ipx
+        cp ../sd/wiiu/ios_plugins/00core.ipx hax/ios_plugins/00core.ipx
         cp ../sd/wiiu/ios_plugins/5isfshax.ipx hax/ios_plugins/5isfshax.ipx
         cp ../sd/wiiu/ios_plugins/wafel_unlimit_mlc.ipx hax/ios_plugins/7unlimit.ipx
         cp ../sd/wiiu/ios_plugins/wafel_usbassd.ipx hax/ios_plugins/8usbsd.ipx
