@@ -57,7 +57,7 @@ jobs:
         wget https://github.com/StroopwafelCFW/wafel_unlimit_mlc/releases/latest/download/wafel_unlimit_mlc.ipx
         wget https://github.com/StroopwafelCFW/wafel_payloader/releases/latest/download/wafel_payloader.ipx
         wget https://github.com/Lazr1026/wafel_usb-as-sd/releases/latest/download/wafel_usbassd.ipx
-        wget https://github.com/Lazr1026/wafel_nowifi_patch/releases/latest/download/8wifi.ipx # This doesn't necessarily need to be on the SD card, but it wont hurt if it is.
+        wget https://github.com/Lazr1026/wafel_nowifi_patch/releases/latest/download/8wifi.ipx
         
         cd ../../..
         
