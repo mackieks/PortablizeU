@@ -55,7 +55,7 @@ jobs:
         wget https://github.com/isfshax/wafel_isfshax_patch/releases/latest/download/5isfshax.ipx
         wget https://github.com/StroopwafelCFW/wafel_setup_mlc/releases/latest/download/wafel_setup_mlc.ipx
         wget https://github.com/StroopwafelCFW/wafel_unlimit_mlc/releases/latest/download/wafel_unlimit_mlc.ipx
-        wget https://github.com/StroopwafelCFW/wafel_payloader/releases/latest/download/wafel_payloader.ipx
+        wget https://github.com/StroopwafelCFW/wafel_payloader/releases/latest/download/5payldr.ipx
         wget https://github.com/Lazr1026/wafel_usb-as-sd/releases/latest/download/wafel_usbassd.ipx
         
         cd ../../..
@@ -88,7 +88,7 @@ jobs:
         cp ../sd/wiiu/ios_plugins/5isfshax.ipx hax/ios_plugins/5isfshax.ipx
         cp ../sd/wiiu/ios_plugins/wafel_unlimit_mlc.ipx hax/ios_plugins/7unlimit.ipx
         cp ../sd/wiiu/ios_plugins/wafel_usbassd.ipx hax/ios_plugins/8usbsd.ipx
-        cp ../sd/wiiu/ios_plugins/wafel_payloader.ipx hax/ios_plugins/9payldr.ipx
+        cp ../sd/wiiu/ios_plugins/5payldr.ipx hax/ios_plugins/9payldr.ipx
         
         cd ../..
         
